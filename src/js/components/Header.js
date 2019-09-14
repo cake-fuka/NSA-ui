@@ -1,24 +1,13 @@
 import React from "react";
 
+import Collection from "./videos/Collection";
+
 export default class Header extends React.Component {
-  handleChange(e) {
-    var title = e.target.value;
-    this.props.changeTitle(title.toUpperCase());
-  }
   render() {
     return (
       <div>
-        <Title title={this.props.title} />
-        <input value={this.props.title} onChange={this.handleChange.bind(this)} />
+        <Collection />
       </div>
     );
   }
-}
-
-export class Title extends React.Component {
-  render() {
-      return (
-        <h1>{this.props.title}</h1>
-      );
-    }
 }

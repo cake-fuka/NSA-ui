@@ -1,19 +1,17 @@
 import React from "react";
+
 import Header from "./Header";
+import Body from "./Body";
+
+import Container from '@material-ui/core/Container';
 
 export default class Layout extends React.Component {
-  constructor() {
-    super();
-    this.state = {title: "WELCOME"};
-  }
-  changeTitle(title) {
-    this.setState({title});
-  }
   render() {
     return (
-        <div>
-          <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
-        </div>
+      <Container>
+        <Header />
+        <Body />
+      </Container>
     );
   }
 }
