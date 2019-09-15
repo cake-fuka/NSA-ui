@@ -1,7 +1,7 @@
 import { parse } from 'querystring'
 import React from "react";
 
-import Video from "./Video";
+import Video from "./Video.jsx";
 
 import GridList from '@material-ui/core/GridList';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
@@ -47,6 +47,7 @@ export default class Videos extends React.Component {
       .then((json) => {
         this.setState(
           {
+            ...this.state,
             name: json.name,
             page: json.page,
             videos: this.state.videos.concat(json.videos),

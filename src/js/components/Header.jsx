@@ -1,8 +1,9 @@
 import React from "react";
 
-import GridList from '@material-ui/core/GridList';
-import Collection from "./videos/Collection";
+import Collection from "./videos/Collection.jsx";
 import Search from "./videos/Search.jsx";
+
+import GridList from '@material-ui/core/GridList';
 
 export default class Header extends React.Component {
   render() {
