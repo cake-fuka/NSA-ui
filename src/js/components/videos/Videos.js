@@ -8,23 +8,49 @@ import GridList from '@material-ui/core/GridList';
 export default class Videos extends React.Component {
   constructor() {
     super();
-    this.state = {page: 0, videos: []};
+    this.NSA_VIDEO_API = `http://localhost:8080/NSA/video`;
+
+    this.state = {name: "", page: 0, videos: []};
   }
 
   newVideo() {
-    let query = {name: "", page: this.state.page, videos: this.state.videos};
-    let resp = {page: 0, videos: [{title: "title"}, {title: "title2"}, {title: "title3"}]};
-
-    this.setState(
+    const method = "POST";
+    const headers = {
+      'Content-Type': 'application/json;charset: utf-8',
+    };
+    const body = JSON.stringify(
       {
-        page: resp.page,
-        videos: this.state.videos.concat(resp.videos),
+        name: this.state.name,
+        page: this.state.page,
+        titles: this.state.videos.map((video) => {title: video.title}),
       }
     );
+    console.log("body: ", body);
+
+    fetch(
+      this.NSA_VIDEO_API,
+      {
+        method,
+        headers,
+        body,
+      }
+    )
+      .then((resp) => resp.json())
+      .then((json) => {
+        this.setState(
+          {
+            name: json.name,
+            page: json.page,
+            videos: this.state.videos.concat(json.videos),
+          }
+        );
+      })
+      .catch((err) => console.error(err))
   }
 
   buildVideos() {
     let key = 0;
+    console.log(this.state.videos);
     return (
       this.state.videos.map((video) => Video(video, key++))
     );

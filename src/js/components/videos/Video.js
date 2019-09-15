@@ -7,6 +7,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 const Video = (video, key) => (
 	<GridListTile cols={1} key={key}>
 	  <Card>
+      <img src={video.preview_url} />
 	    <p>{video.title}</p>
 	  </Card>
 	</GridListTile>
