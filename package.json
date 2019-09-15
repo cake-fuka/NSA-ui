@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js ",
   "scripts": {
-    "start": "webpack-dev-server --port 8081 --content-base src --mode development --inline",
+    "start": "webpack-dev-server --https --port 8081 --content-base src --mode development --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -2,8 +2,9 @@ import React from "react";
 
 import Video from "./Video";
 
-import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
 export default class Videos extends React.Component {
   constructor() {
@@ -20,7 +21,6 @@ export default class Videos extends React.Component {
     const headers = {
       'Content-Type': 'application/json;charset: utf-8',
     };
-    console.log(this.state.videos);
     const body = JSON.stringify(
       {
         ...this.state,
@@ -54,7 +54,6 @@ export default class Videos extends React.Component {
 
   buildVideos() {
     let key = 0;
-    console.log(this.state.videos);
     return (
       this.state.videos.map((video) => Video(video, key++))
     );
@@ -64,13 +63,15 @@ export default class Videos extends React.Component {
     const query = window.location.search;
     return (
       <div>
-        <GridList cellHeight="auto" cols={3}>
+        <GridList padding={10} cellHeight="auto" cols={3}>
           {
             this.buildVideos()
           }
         </GridList>
-        <button onClick={this.newVideo.bind(this)}>button</button>
+        <BottomNavigation showLabels>
+          <BottomNavigationAction onClick={this.newVideo.bind(this)} label="もっと表示" />} />
+        </BottomNavigation>
       </div>
-    );
+      );
   }
 }
