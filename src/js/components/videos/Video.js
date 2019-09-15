@@ -8,17 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardMedia from '@material-ui/core/CardMedia';
 
-const useStyles = makeStyles(
-  theme => ({
-    card: {
-      padding: theme.spacing(10),
-    }
-  })
-);
-
 const Video = (video, key) => {
-  const classes = useStyles();
-
 	return (
     <GridListTile cols={1} key={key}>
 	    <Card>

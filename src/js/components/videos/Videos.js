@@ -1,3 +1,4 @@
+import { parse } from 'querystring'
 import React from "react";
 
 import Video from "./Video";
@@ -10,8 +11,14 @@ export default class Videos extends React.Component {
   constructor() {
     super();
     this.NSA_VIDEO_API = `http://localhost:8080/NSA/video`;
+    const params = parse(window.location.search.slice(1));
 
-    this.state = {name: "", page: 0, videos: [], isRunning: false};
+    this.state = {name: params.name, page: 0, videos: [], isRunning: false};
+    console.log(this.state);
+  }
+
+  componentDidMount() {
+    this.newVideo();
   }
 
   newVideo() {
@@ -63,7 +70,7 @@ export default class Videos extends React.Component {
     const query = window.location.search;
     return (
       <div>
-        <GridList padding={10} cellHeight="auto" cols={3}>
+        <GridList cellHeight="auto" cols={3}>
           {
             this.buildVideos()
           }
