@@ -27,11 +27,15 @@ export default class Search extends React.Component {
     )
   }
 
-  doSearch(ev) {
-    if (ev.key === 'Enter') {
-      ev.preventDefault();
-      window.location.href = `/?name=${this.state.name}`;
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.doSearch(event);
     }
+  }
+
+  doSearch(event) {
+    event.preventDefault();
+    window.location.href = `/?name=${this.state.name}`;
   }
 
   render() {
@@ -40,10 +44,10 @@ export default class Search extends React.Component {
         <TextField
           value={this.state.name}
           onChange={this.handleChange.bind(this)}
-          onKeyPress={this.doSearch.bind(this)}
+          onKeyPress={this.handleKeyPress.bind(this)}
           InputProps={{
             endAdornment: (
-              <InputAdornment onClick={this.doSearch.bind(this)}>
+              <InputAdornment>
                 <IconButton onClick={this.doSearch.bind(this)}>
                   <SearchIcon />
                 </IconButton>
