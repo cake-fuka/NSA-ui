@@ -10,22 +10,23 @@ export default class Videos extends React.Component {
     super();
     this.NSA_VIDEO_API = `http://localhost:8080/NSA/video`;
 
-    this.state = {name: "", page: 0, videos: []};
+    this.state = {name: "", page: 0, videos: [], isRunning: false};
   }
 
   newVideo() {
+    if(this.state.isRunning) { return; }
+
     const method = "POST";
     const headers = {
       'Content-Type': 'application/json;charset: utf-8',
     };
+    console.log(this.state.videos);
     const body = JSON.stringify(
       {
-        name: this.state.name,
-        page: this.state.page,
+        ...this.state,
         titles: this.state.videos.map((video) => {title: video.title}),
       }
     );
-    console.log("body: ", body);
 
     fetch(
       this.NSA_VIDEO_API,
@@ -42,10 +43,13 @@ export default class Videos extends React.Component {
             name: json.name,
             page: json.page,
             videos: this.state.videos.concat(json.videos),
+            isRunning: false
           }
         );
       })
       .catch((err) => console.error(err))
+
+    this.setState({ ...this.state, isRunning: true });
   }
 
   buildVideos() {
