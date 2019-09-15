@@ -1,5 +1,6 @@
 import React from "react";
 
+import GridListTile from '@material-ui/core/GridListTile';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -56,7 +57,7 @@ export default class Collection extends React.Component {
 
   render() {
     return (
-      <div>
+      <GridListTile cols={1}>
         <Button
           variant="contained"
           color="primary"
@@ -81,7 +82,7 @@ export default class Collection extends React.Component {
             }
           </Menu>
         }
-      </div>
+      </GridListTile>
     );
   }
 }
