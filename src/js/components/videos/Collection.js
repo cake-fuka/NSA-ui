@@ -49,6 +49,11 @@ export default class Collection extends React.Component {
     this.setAnchorEl(null);
   }
 
+  redirect(e, name) {
+    e.preventDefault();
+    window.location.href = `/?name=${name}`;
+  }
+
   render() {
     return (
       <div>
@@ -68,8 +73,8 @@ export default class Collection extends React.Component {
             {
               this.state.collection.map((c) =>
                 (
-                  <MenuItem key={c} onClick={this.handleClose.bind(this)}>
-                    <ListItemText primary={c} href={`/?name=${c}`}/>
+                  <MenuItem key={c} onClick={this.handleClick.bind(this)}>
+                    <ListItemText primary={c} onClick={(event) => this.redirect.bind(this)(event, c)}/>
                   </MenuItem>
                 )
               )
