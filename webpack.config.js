@@ -4,7 +4,7 @@ var path    = require('path');
 
 module.exports = {
   context: path.join(__dirname, "src"),
-  entry: "./js/client.js",
+  entry: "./js/client.jsx",
   module: {
     rules: [{
       test: /\.jsx?$/,
